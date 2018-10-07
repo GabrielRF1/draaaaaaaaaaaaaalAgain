@@ -8,7 +8,7 @@ public class Constantes{
 	private static final int tamLinha = 28;
 
 	//JOGADOR
-	private static final int numeroDePersonagemPorJogador = 1;
+	private static final int numeroDePersonagemPorJogador = 15;
 
 
 	//GETTERS

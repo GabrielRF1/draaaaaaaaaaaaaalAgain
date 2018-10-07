@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.personagem.TipoPersonagem;
+import constante.Constantes;
 
 /**
  *
@@ -21,17 +22,16 @@ import modelo.personagem.TipoPersonagem;
 public class TabuleiroView extends javax.swing.JFrame {
 
     protected static JToggleButton campoGrafico[][];
-    private boolean hadClicked, charsCreated;
+    private boolean charsCreated;
     private int numCreated;
 
     /**
      * Creates new form TabuleiroView
      */
     public TabuleiroView() {
-        campoGrafico = new JToggleButton[28][28];
+        campoGrafico = new JToggleButton[Constantes.getTamLinha()][Constantes.getTamColuna()];
         initComponents();
         initCampo();
-        hadClicked = false;
         charsCreated = false;
         numCreated = 0;
         pack();
@@ -141,27 +141,27 @@ public class TabuleiroView extends javax.swing.JFrame {
 
     private void clique(java.awt.event.ActionEvent evt) {
         Point ponto = getSelectedPoint(campoGrafico);
-        if (!charsCreated) {
+        if (charsCreated) {
+            try {
+                Controle.getObject().selecionarAcao(ponto.x, ponto.y);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             int chara = Integer.parseInt(JOptionPane.showInputDialog("*--------------selecione um número:--------------*"
-                    + "\n1-Guerreiro\n2-Arqueiro\n3-Bardo\n4-Assassino\n5-Clerigo\n"
+                    + "\n1-Guerreiro\n2-Arqueiro\n3-Bardo\n4-Assassino\n5-Clerigo\nOutro num- Finalizar\n"
                     + "*-----------------------------------------------*"));
             createCharView(chara);
         }
         campoGrafico[ponto.x][ponto.y].setSelected(false);
-        if (charsCreated && Tabuleiro.getObject().getTabuleiro()[ponto.x][ponto.y].getPersonagem() != null && !hadClicked) {
-            hadClicked = true;
-        } else if (charsCreated && hadClicked) {
-            Controle.getObject().selecionarAcao(ponto.x, ponto.y);
-            hadClicked = false;
-        } else {
-            hadClicked = false;
-        }
+
         campoGrafico = atualizarCampo();
 
     }
 
     private void createCharView(int chara) {
         TipoPersonagem tipo;
+        boolean canCreate = true;
         switch (chara) {
             case 1:
                 tipo = TipoPersonagem.GUERREIRO;
@@ -179,22 +179,26 @@ public class TabuleiroView extends javax.swing.JFrame {
                 tipo = TipoPersonagem.CLERIGO;
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "Número " + chara + " é inválido");
-                return;
+                canCreate = false;
+                numCreated = 14;
+                Controle.getObject().passarTurno();
+                tipo = TipoPersonagem.ARQUEIRO;
         }
-        for (int i = 0; i < campoGrafico.length; i++) {
-            for (int j = 0; j < campoGrafico[0].length; j++) {
-                if (campoGrafico[i][j].isSelected()) {
-                    Controle.getObject().selecionarPersonagem(i, j, tipo);
-                    break;
+        if (canCreate) {
+            for (int i = 0; i < campoGrafico.length; i++) {
+                for (int j = 0; j < campoGrafico[0].length; j++) {
+                    if (campoGrafico[i][j].isSelected()) {
+                        Controle.getObject().selecionarPersonagem(i, j, tipo);
+                        break;
+                    }
                 }
             }
         }
         numCreated++;
-        if (numCreated == 1 && Controle.getObject().getJogadorDaVez().getNome().equals("Jogador 2")) {
+        if (numCreated == 15 && Controle.getObject().getJogadorDaVez().getNome().equals("Jogador 2")) {
             numCreated = 0;
         }
-        if (Controle.getObject().getJogadorDaVez().getNome().equals("Jogador 1") && numCreated == 1) {
+        if (Controle.getObject().getJogadorDaVez().getNome().equals("Jogador 1") && numCreated == 15) {
             charsCreated = true;
         }
     }

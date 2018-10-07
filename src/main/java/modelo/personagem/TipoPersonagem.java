@@ -2,7 +2,7 @@ package modelo.personagem;
 
 public enum TipoPersonagem {
 
-	ARQUEIRO(100, 5, 5), GUERREIRO(100, 5, 5), CLERIGO(100, 5, 5), BARDO(100, 5, 5), ASSASSINO(100, 5, 5);
+	ARQUEIRO(3, 8, 10), GUERREIRO(2, 1, 3), CLERIGO(0, 1, 5), BARDO(0, 1, 5), ASSASSINO(10, 2, 6);
 
 	private int dano;
 	private int rangeAtacar;

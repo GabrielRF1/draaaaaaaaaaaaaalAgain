@@ -67,7 +67,7 @@ public class Controle {
         System.exit(0);
     }
 
-    public void selecionarAcao(int x, int y) {
+    public void selecionarAcao(int x, int y) throws NullPointerException {
 
         Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
         Personagem personagem = clickedPosition.getPersonagem();
@@ -84,6 +84,7 @@ public class Controle {
                 // ATACAR
                 System.out.println("atacar");
                 this.jogo.atacar(celulaSelecionada, clickedPosition);
+                this.atualizarVivas(clickedPosition);
                 this.jogadorDaVez.setCelulaSelecionada(null);
             }
         } else {
@@ -94,10 +95,13 @@ public class Controle {
                 this.jogadorDaVez.setCelulaSelecionada(null);
             }
         }
-        checarfimTurno();
+        if (ehFimTurno()) {
+            passarTurno();
+            System.out.println("Passa Turno");
+        }
     }
 
-    public boolean checarfimTurno() {
+    public boolean ehFimTurno() {
         int x = 0;
         int y = 0;
         for (int i = 0; i < this.jogadorDaVez.getPersonagens().size(); i++) {
@@ -115,7 +119,6 @@ public class Controle {
     public void passarTurno() {
 
         if (jogo != null) {
-
             this.jogadorDaVez.atualizarStatusDosPersonagens();
 
             if (this.jogadorDaVez == this.jogo.getJogadorUm()) {
@@ -123,7 +126,6 @@ public class Controle {
             } else {
                 this.jogadorDaVez = this.jogo.getJogadorUm();
             }
-
             this.jogo.passarTurnoAtual();
         }
 
@@ -135,5 +137,12 @@ public class Controle {
 
     public Jogador getJogadorDaVez() {
         return this.jogadorDaVez;
+    }
+
+    private void atualizarVivas(Celula clicked) {
+        if(clicked.getPersonagem().getHP() <=0){
+            this.jogo.matar(clicked.getPersonagem());
+            clicked.setPersonagem(null);
+        }
     }
 }

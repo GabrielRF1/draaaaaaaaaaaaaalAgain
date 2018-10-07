@@ -7,7 +7,6 @@ public class Personagem {
     private TipoPersonagem tipoPersonagem;
     private boolean moveu;
     private boolean atacou;
-    private static final String imagePath = "";
 
     public Personagem(int hp, int energia, TipoPersonagem tipoPersonagem) {
         this.hp = hp;
@@ -19,6 +18,10 @@ public class Personagem {
 
     public int getHP() {
         return this.hp;
+    }
+
+    public void setEnergia(int energia) {
+        this.energia = energia;
     }
 
     public boolean getMoveu() {
