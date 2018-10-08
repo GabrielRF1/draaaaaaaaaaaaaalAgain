@@ -73,7 +73,6 @@ public class Controle {
         Personagem personagem = clickedPosition.getPersonagem();
         Celula celulaSelecionada = this.jogadorDaVez.getCelulaSelecionada();
 
-        //System.out.println("posicao clicada: " + x + ", " + y);
         if (personagem != null) {
 
             if (this.jogadorDaVez.personagemPertenceAoJogador(personagem)) {
