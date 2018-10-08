@@ -95,10 +95,6 @@ public class Controle {
                 this.jogadorDaVez.setCelulaSelecionada(null);
             }
         }
-        if (ehFimTurno()) {
-            passarTurno();
-            System.out.println("Passa Turno");
-        }
     }
 
     public boolean ehFimTurno() {

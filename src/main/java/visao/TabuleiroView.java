@@ -168,6 +168,10 @@ public class TabuleiroView extends javax.swing.JFrame {
         if (charsCreated) {
             try {
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
+                if (Controle.getObject().ehFimTurno()) {
+                    Controle.getObject().passarTurno();
+                    System.out.println("Passa Turno");
+                }
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -251,6 +255,8 @@ public class TabuleiroView extends javax.swing.JFrame {
             for (int j = 0; j < campoGrafico[0].length; j++) {
                 if (null != Tabuleiro.getObject().getTabuleiro()[i][j].getPersonagem()) {
                     atualizarPecas(new Point(i, j));
+                } else {
+                    campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource("/grass_green2y_d.JPG")));
                 }
             }
         }
