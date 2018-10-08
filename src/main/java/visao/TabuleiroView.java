@@ -134,6 +134,7 @@ public class TabuleiroView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (charsCreated) {
             Controle.getObject().passarTurno();
+            campoGrafico = atualizarCampo();
             JOptionPane.showMessageDialog(this, "turno passado para " + Controle.getObject().getJogadorDaVez().getNome());
         }
     }
@@ -164,9 +165,9 @@ public class TabuleiroView extends javax.swing.JFrame {
     }
 
     private void clique(java.awt.event.ActionEvent evt) {
-        Point ponto = getSelectedPoint(campoGrafico);
         if (charsCreated) {
             try {
+                Point ponto = getSelectedPoint(campoGrafico);
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
                 if (Controle.getObject().ehFimTurno()) {
                     Controle.getObject().passarTurno();
@@ -185,8 +186,6 @@ public class TabuleiroView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Use Os números correspondentes", "Erro!", JOptionPane.ERROR_MESSAGE);
             }
         }
-        campoGrafico[ponto.x][ponto.y].setSelected(false);
-
         campoGrafico = atualizarCampo();
 
     }
@@ -258,6 +257,8 @@ public class TabuleiroView extends javax.swing.JFrame {
                 } else {
                     campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource("/grass_green2y_d.JPG")));
                 }
+                campoGrafico[i][j].setSelected(false);
+
             }
         }
         jLabel3.setText(Controle.getObject().getJogadorDaVez().getNome());
