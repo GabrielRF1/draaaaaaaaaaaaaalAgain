@@ -92,7 +92,10 @@ public class Jogo {
         int danoDoPersonagem = personagemAtck.getTipoPersonagem().getDano();
         int energia = personagemAtck.getEnergia();
         
-        if (!personagemAtck.getAtacou() && Tabuleiro.getObject().isInRange(rangePersonagem, origem, alvo)) {
+        boolean isInRange = Tabuleiro.getObject().isInRange(rangePersonagem, origem, alvo);
+        boolean atacou = personagemAtck.getAtacou();
+        
+        if (!atacou && isInRange) {
             
             personagemDfns.setDanoInfligido(danoDoPersonagem);
             personagemAtck.setAtacou(true);
