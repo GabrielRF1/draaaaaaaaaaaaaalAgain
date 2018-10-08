@@ -53,9 +53,11 @@ public class TabuleiroView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,11 +73,11 @@ public class TabuleiroView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setText("Dral");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(41, 308, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(41, 194, 0, 0);
         jPanel3.add(jLabel1, gridBagConstraints);
 
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
@@ -86,11 +88,32 @@ public class TabuleiroView extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(57, 234, 0, 96);
+        gridBagConstraints.insets = new java.awt.Insets(57, 234, 0, 59);
         jPanel3.add(jButton1, gridBagConstraints);
+
+        jLabel2.setBackground(new java.awt.Color(153, 255, 51));
+        jLabel2.setForeground(new java.awt.Color(153, 255, 102));
+        jLabel2.setText("Jogador Atual: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(80, 6, 0, 0);
+        jPanel3.add(jLabel2, gridBagConstraints);
+
+        jLabel3.setForeground(new java.awt.Color(153, 255, 102));
+        jLabel3.setText("Jogador 1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(80, 6, 0, 0);
+        jPanel3.add(jLabel3, gridBagConstraints);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
@@ -121,6 +144,7 @@ public class TabuleiroView extends javax.swing.JFrame {
                 campoGrafico[i][j] = new JToggleButton();
                 campoGrafico[i][j].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 campoGrafico[i][j].setBackground(Color.green);
+                campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource("/grass_green2y_d.JPG")));
                 campoGrafico[i][j].addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         clique(evt);
@@ -148,10 +172,14 @@ public class TabuleiroView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            int chara = Integer.parseInt(JOptionPane.showInputDialog("*--------------selecione um número:--------------*"
-                    + "\n1-Guerreiro\n2-Arqueiro\n3-Bardo\n4-Assassino\n5-Clerigo\nOutro num- Finalizar\n"
-                    + "*-----------------------------------------------*"));
-            createCharView(chara);
+            try {
+                int chara = Integer.parseInt(JOptionPane.showInputDialog("*--------------selecione um número:--------------*"
+                        + "\n1-Guerreiro\n2-Arqueiro\n3-Bardo\n4-Assassino\n5-Clerigo\nOutro num- Finalizar\n"
+                        + "*-----------------------------------------------*"));
+                createCharView(chara);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Use Os números correspondentes", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
         }
         campoGrafico[ponto.x][ponto.y].setSelected(false);
 
@@ -221,13 +249,12 @@ public class TabuleiroView extends javax.swing.JFrame {
     private JToggleButton[][] atualizarCampo() {
         for (int i = 0; i < campoGrafico.length; i++) {
             for (int j = 0; j < campoGrafico[0].length; j++) {
-                if (null == Tabuleiro.getObject().getTabuleiro()[i][j].getPersonagem()) {
-                    campoGrafico[i][j].setIcon(null);
-                } else {
+                if (null != Tabuleiro.getObject().getTabuleiro()[i][j].getPersonagem()) {
                     atualizarPecas(new Point(i, j));
                 }
             }
         }
+        jLabel3.setText(Controle.getObject().getJogadorDaVez().getNome());
         return campoGrafico;
     }
 
@@ -291,6 +318,8 @@ public class TabuleiroView extends javax.swing.JFrame {
     // Variables declaration - do not modify      
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
