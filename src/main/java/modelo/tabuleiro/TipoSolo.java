@@ -2,7 +2,7 @@ package modelo.tabuleiro;
 
 public enum TipoSolo {
 	
-	GRAMA("resources/terrain/grass_green_d.jpg"),
+	GRAMA("resources/terrain/grass_green2y_d.jpg"),
 	
 	/*NEVE("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\snow_grass2_d.jpg"),
 	

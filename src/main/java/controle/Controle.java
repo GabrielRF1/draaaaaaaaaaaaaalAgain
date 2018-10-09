@@ -59,10 +59,6 @@ public class Controle {
         return false;
     }
 
-    public void verRegras() {
-
-    }
-
     public void sair() {
         System.exit(0);
     }

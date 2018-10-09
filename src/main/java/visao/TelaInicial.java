@@ -5,6 +5,8 @@
  */
 package visao;
 
+import controle.Controle;
+
 /**
  *
  * @author Gabriel
@@ -16,9 +18,9 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         setLocationRelativeTo(null);
-        setResizable(false);      
+        setResizable(false);
         initComponents();
-        
+
     }
 
     /**
@@ -125,9 +127,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TabuleiroView a = new TabuleiroView();
-                a.setLocationRelativeTo(this);
-                this.dispose();
-                a.setVisible(true);
+        a.setLocationRelativeTo(this);
+        this.dispose();
+        a.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -136,7 +138,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.exit(0);
+        Controle.getObject().sair();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 

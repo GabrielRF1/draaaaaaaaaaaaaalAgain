@@ -234,10 +234,6 @@ public class TabuleiroView extends javax.swing.JFrame {
         }
     }
 
-    public static JToggleButton[][] getCampoGrafico() {
-        return campoGrafico;
-    }
-
     private Point getSelectedPoint(JToggleButton[][] campoGrafico) {
         for (int i = 0; i < campoGrafico.length; i++) {
             for (int j = 0; j < campoGrafico[0].length; j++) {
