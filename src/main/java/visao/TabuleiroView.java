@@ -231,6 +231,7 @@ public class TabuleiroView extends javax.swing.JFrame {
         }
         if (Controle.getObject().getJogadorDaVez().getNome().equals("Jogador 1") && numCreated == 15) {
             charsCreated = true;
+            Controle.getObject().handleEndOfCreation();
         }
     }
 

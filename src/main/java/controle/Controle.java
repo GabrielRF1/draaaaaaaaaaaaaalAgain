@@ -59,6 +59,10 @@ public class Controle {
         return false;
     }
 
+    public void handleEndOfCreation() {
+        this.jogo.changeState();
+    }
+
     public void sair() {
         System.exit(0);
     }
@@ -131,7 +135,7 @@ public class Controle {
     }
 
     private void atualizarVivas(Celula clicked) {
-        if(clicked.getPersonagem().getHP() <=0){
+        if (clicked.getPersonagem().getHP() <= 0) {
             this.jogo.matar(clicked.getPersonagem());
             clicked.setPersonagem(null);
         }
