@@ -31,8 +31,23 @@ public class Tabuleiro {
         Celula celula;
         for (int i = 0; i < this.tamLinha; i++) {
             for (int j = 0; j < this.tamColuna; j++) {
-                celula = new Celula(i, j, TipoSolo.GRAMA);
-                tabuleiro[i][j] = celula;
+                TipoSolo t = TipoSolo.GRAMA;
+                if (i <= 4) {
+                    t = TipoSolo.BASE_1;
+                } else if (i >= 23) {
+                    t = TipoSolo.BASE_2;
+                } else if (i <= 17 && i >= 12) {
+                    t = TipoSolo.AGUA;
+                    if ((j >= 14 && j <= 18) || j == 3 || j == 24 || j == 10) {
+                        t = TipoSolo.PONTE;
+                    }
+                }
+                if ((i == 18 && j == 12)||(i == 11 && j == 20)) {
+                t=TipoSolo.MONTANHA;
+                }
+
+                celula = new Celula(j, i, t);
+                tabuleiro[j][i] = celula;
             }
         }
     }

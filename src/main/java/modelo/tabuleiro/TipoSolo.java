@@ -2,23 +2,18 @@ package modelo.tabuleiro;
 
 public enum TipoSolo {
 	
-	GRAMA("resources/terrain/grass_green2y_d.jpg"),
 	
-	/*NEVE("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\snow_grass2_d.jpg"),
+	GRAMA("/grass_green2y_d.jpg"),
 	
-	AGUA("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\snow_mntn2_n.jpg"),
+	AGUA("/grass_autumn_n.jpg"),
+		
+	PONTE("/desert_mntn_s.jpg"),
+		
+	MONTANHA("/mntn_canyon_d.jpg"),
 	
-	CHAO_PEDRA("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\grass_ground_h.jpg"),
+	BASE_1("/ground_ferns_d.jpg"),
 	
-	PONTE("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\mntn_brown_d.jpg"),
-	
-	AREIA("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\desert_sand_d.jpg"),
-	
-	MONTANHA("\\home\\leopoldo\\Jean\\Code\\Dral\\resources\\terrain\\mntn_canyon_d.jpg"),*/
-	
-	BASE_1("resources/terrain/grass_green_d.jpg"),
-	
-	BASE_2("resources/terrain/grass_green_d.jpg");
+	BASE_2("/snow_grass3_d.jpg");
 	
 	private String imagePath;
 	

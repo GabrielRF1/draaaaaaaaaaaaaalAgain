@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.personagem.TipoPersonagem;
 import constante.Constantes;
+import modelo.tabuleiro.TipoSolo;
 
 /**
  *
@@ -145,7 +146,15 @@ public class TabuleiroView extends javax.swing.JFrame {
                 campoGrafico[i][j] = new JToggleButton();
                 campoGrafico[i][j].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 campoGrafico[i][j].setBackground(Color.green);
-                campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource("/grass_green2y_d.JPG")));
+                if (j >= 23) {
+                    campoGrafico[i][j].setBackground(Color.WHITE);
+                } else if (j <= 17 && j >= 12) {
+                    campoGrafico[i][j].setBackground(Color.BLUE);
+                    if ((i >= 14 && i <= 18) || i == 3 || i == 24 || i == 10) {
+                        campoGrafico[i][j].setBackground(Color.GRAY);
+                    }
+                }
+                campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
                 campoGrafico[i][j].addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         clique(evt);
@@ -252,7 +261,7 @@ public class TabuleiroView extends javax.swing.JFrame {
                 if (null != Tabuleiro.getObject().getTabuleiro()[i][j].getPersonagem()) {
                     atualizarPecas(new Point(i, j));
                 } else {
-                    campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource("/grass_green2y_d.JPG")));
+                    campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
                 }
                 campoGrafico[i][j].setSelected(false);
 

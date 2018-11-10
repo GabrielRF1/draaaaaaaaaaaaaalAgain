@@ -6,6 +6,7 @@ import modelo.personagem.Personagem;
 import modelo.personagem.TipoPersonagem;
 import modelo.tabuleiro.Celula;
 import modelo.tabuleiro.Tabuleiro;
+import modelo.tabuleiro.TipoSolo;
 
 public class Jogo {
 
@@ -20,13 +21,11 @@ public class Jogo {
     private int turnoAtual;
 
     public Jogo() {
-
         //Tabuleiro.getObject() = new Tabuleiro();
         this.jogadorUm = new Jogador("Jogador 1");
         this.jogadorDois = new Jogador("Jogador 2");
         this.estadoAtual = estadoGame.EstadoDeCriacao;
         this.turnoAtual = 0;
-
     }
 
     public void changeState() {
@@ -80,18 +79,19 @@ public class Jogo {
 
     public void mover(Celula origem, Celula destino) {
         if (estadoAtual.equals(estadoGame.EstadoDeJogo)) {
+            if (!destino.getTipoSolo().equals(TipoSolo.AGUA)) {
+                Personagem personagem = origem.getPersonagem();
+                int rangePersonagem = personagem.getTipoPersonagem().getRangeMover();
 
-            Personagem personagem = origem.getPersonagem();
-            int rangePersonagem = personagem.getTipoPersonagem().getRangeMover();
+                if (Tabuleiro.getObject().isInRange(rangePersonagem, origem, destino)) {
 
-            if (Tabuleiro.getObject().isInRange(rangePersonagem, origem, destino)) {
+                    if (!personagem.getMoveu()) {
 
-                if (!personagem.getMoveu()) {
+                        destino.setPersonagem(personagem);
+                        personagem.setMoveu(true);
+                        origem.setPersonagem(null);
 
-                    destino.setPersonagem(personagem);
-                    personagem.setMoveu(true);
-                    origem.setPersonagem(null);
-
+                    }
                 }
             }
         }
