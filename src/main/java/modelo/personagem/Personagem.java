@@ -7,17 +7,23 @@ public class Personagem {
     private TipoPersonagem tipoPersonagem;
     private boolean moveu;
     private boolean atacou;
+    private final int side;
 
-    public Personagem(int hp, int energia, TipoPersonagem tipoPersonagem) {
+    public Personagem(int hp, int energia, TipoPersonagem tipoPersonagem, int side) {
         this.hp = hp;
         this.energia = energia;
         this.tipoPersonagem = tipoPersonagem;
         this.moveu = false;
         this.atacou = false;
+        this.side = side;
     }
-
+    
     public int getHP() {
         return this.hp;
+    }
+
+    public int getSide() {
+        return side;
     }
 
     public void setEnergia(int energia) {

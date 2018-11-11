@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import modelo.personagem.TipoPersonagem;
 import constante.Constantes;
+import modelo.personagem.Personagem;
 import modelo.tabuleiro.TipoSolo;
 
 /**
@@ -228,7 +229,7 @@ public class TabuleiroView extends javax.swing.JFrame {
             for (int i = 0; i < campoGrafico.length; i++) {
                 for (int j = 0; j < campoGrafico[0].length; j++) {
                     if (campoGrafico[i][j].isSelected()) {
-                        Controle.getObject().selecionarPersonagem(i, j, tipo);
+                        Controle.getObject().selecionarPersonagem(i, j, tipo, Controle.getObject().getJogo().getTurnoAtual());
                         break;
                     }
                 }
@@ -272,22 +273,43 @@ public class TabuleiroView extends javax.swing.JFrame {
     }
 
     private void atualizarPecas(Point ponto) {
-        TipoPersonagem p = Tabuleiro.getObject().getTabuleiro()[ponto.x][ponto.y].getPersonagem().getTipoPersonagem();
-        switch (p) {
+        Personagem p = Tabuleiro.getObject().getTabuleiro()[ponto.x][ponto.y].getPersonagem();
+        TipoPersonagem pl = p.getTipoPersonagem();
+        switch (pl) {
             case ARQUEIRO:
-                campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Arqueiro(By Meilun).png")));
+                if (p.getSide() == 0) {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Arqueiro(By Meilun).png")));
+                } else {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Arqueiro(2).png")));
+                }
                 break;
             case GUERREIRO:
-                campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Guerreiro(By Meilun).png")));
+                if (p.getSide() == 0) {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Guerreiro(By Meilun).png")));
+                } else {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Guerreiro(2).png")));
+                }
                 break;
             case ASSASSINO:
-                campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Assassin(By Meilun).png")));
+                if (p.getSide() == 0) {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Assassin(By Meilun).png")));
+                } else {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Assassin(2).png")));
+                }
                 break;
             case CLERIGO:
-                campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Clerigo(By Meilun).png")));
+                if (p.getSide() == 0) {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Clerigo(By Meilun).png")));
+                } else {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Clerigo(2).png")));
+                }
                 break;
             case BARDO:
-                campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Bardo(By Meilun).png")));
+                if (p.getSide() == 0) {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Bardo(By Meilun).png")));
+                } else {
+                    campoGrafico[ponto.x][ponto.y].setIcon(new ImageIcon(getClass().getResource("/Bardo(2).png")));
+                }
                 break;
         }
 

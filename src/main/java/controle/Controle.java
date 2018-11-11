@@ -34,9 +34,9 @@ public class Controle {
 
     }
 
-    public void selecionarPersonagem(int x, int y, TipoPersonagem tipoPersonagem) {
+    public void selecionarPersonagem(int x, int y, TipoPersonagem tipoPersonagem, int side) {
 
-        Personagem personagem = this.jogo.selecionarPersonagem(tipoPersonagem);
+        Personagem personagem = this.jogo.selecionarPersonagem(tipoPersonagem, side);
         Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
         System.out.println(this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition));
 

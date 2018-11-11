@@ -51,24 +51,28 @@ public class Jogo {
         }
     }
 
-    public Personagem selecionarPersonagem(TipoPersonagem tipoPersonagem) {
+    public int getTurnoAtual() {
+        return turnoAtual;
+    }
+
+    public Personagem selecionarPersonagem(TipoPersonagem tipoPersonagem, int side) {
         if (this.estadoAtual == estadoGame.EstadoDeCriacao) {
             switch (tipoPersonagem) {
 
                 case BARDO:
-                    return new Personagem(15, 2, TipoPersonagem.BARDO);
+                    return new Personagem(15, 2, TipoPersonagem.BARDO, side);
 
                 case ARQUEIRO:
-                    return new Personagem(5, 5, TipoPersonagem.ARQUEIRO);
+                    return new Personagem(5, 5, TipoPersonagem.ARQUEIRO, side);
 
                 case ASSASSINO:
-                    return new Personagem(6, 3, TipoPersonagem.ASSASSINO);
+                    return new Personagem(6, 3, TipoPersonagem.ASSASSINO, side);
 
                 case CLERIGO:
-                    return new Personagem(7, 20, TipoPersonagem.CLERIGO);
+                    return new Personagem(7, 20, TipoPersonagem.CLERIGO, side);
 
                 case GUERREIRO:
-                    return new Personagem(40, 0, TipoPersonagem.GUERREIRO);
+                    return new Personagem(40, 0, TipoPersonagem.GUERREIRO, side);
 
                 default:
                     return null;
@@ -157,9 +161,7 @@ public class Jogo {
     }
 
     public void passarTurnoAtual() {
-        if (estadoAtual.equals(estadoGame.EstadoDeJogo)) {
             this.turnoAtual++;
-        }
     }
 
     public int turnoAtual() {
