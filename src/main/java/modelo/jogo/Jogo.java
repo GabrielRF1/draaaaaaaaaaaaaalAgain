@@ -120,7 +120,7 @@ public class Jogo {
             //atributos de range do personagem atacante
             int rangePersonagem = personagemAtck.getTipoPersonagem().getRangeAtacar();
             if (personagemAtck.getTipoPersonagem().equals(TipoPersonagem.ARQUEIRO) && origem.getTipoSolo().equals(TipoSolo.MONTANHA)) {
-                rangePersonagem += 5;
+                rangePersonagem += 3;
             }
             //atributos de dano do personagem atacante
             int danoDoPersonagem = personagemAtck.getTipoPersonagem().getDano();
