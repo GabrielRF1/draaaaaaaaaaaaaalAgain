@@ -16,9 +16,9 @@ public class Jogo {
 
     public void suporte(Celula origem, Celula alvo) {
         Personagem buffedTarget = alvo.getPersonagem();
-        if(origem.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)){
+        if (origem.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)) {
             buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
-        }else{
+        } else {
             buffedTarget.setDanoInfligido(-2);
         }
     }
@@ -59,9 +59,9 @@ public class Jogo {
             }
         }
     }
-    
+
     public int getTurnoAtual() {
-    	return this.turnoAtual;
+        return this.turnoAtual;
     }
 
     public Personagem selecionarPersonagem(TipoPersonagem tipoPersonagem, int side) {
@@ -119,7 +119,9 @@ public class Jogo {
 
             //atributos de range do personagem atacante
             int rangePersonagem = personagemAtck.getTipoPersonagem().getRangeAtacar();
-
+            if (personagemAtck.getTipoPersonagem().equals(TipoPersonagem.ARQUEIRO) && origem.getTipoSolo().equals(TipoSolo.MONTANHA)) {
+                rangePersonagem += 5;
+            }
             //atributos de dano do personagem atacante
             int danoDoPersonagem = personagemAtck.getTipoPersonagem().getDano();
             int energia = personagemAtck.getEnergia();
@@ -170,7 +172,7 @@ public class Jogo {
     }
 
     public void passarTurnoAtual() {
-            this.turnoAtual++;
+        this.turnoAtual++;
     }
 
     public int turnoAtual() {
