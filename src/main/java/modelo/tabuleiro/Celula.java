@@ -16,6 +16,17 @@ public class Celula {
 		this.tipoSolo = tipoSolo;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "Celula [x=" + x + ", y=" + y + ", personagem=" + personagem + ", tipoSolo=" + tipoSolo + "]";
+	}
+
+
+	public String toStringError() {
+		return "Celula [x=" + x + ", y=" + y + "]";
+	}
+
 	public int getX() {
 		return this.x;
 	}

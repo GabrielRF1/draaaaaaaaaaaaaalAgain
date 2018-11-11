@@ -18,7 +18,13 @@ public class Personagem {
         this.side = side;
     }
     
-    public int getHP() {
+    @Override
+	public String toString() {
+		return "Personagem [hp=" + hp + ", energia=" + energia + ", tipoPersonagem=" + tipoPersonagem + ", moveu="
+				+ moveu + ", atacou=" + atacou + "]";
+	}
+
+	public int getHP() {
         return this.hp;
     }
 

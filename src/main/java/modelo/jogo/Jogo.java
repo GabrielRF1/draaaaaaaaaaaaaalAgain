@@ -50,9 +50,9 @@ public class Jogo {
             }
         }
     }
-
+    
     public int getTurnoAtual() {
-        return turnoAtual;
+    	return this.turnoAtual;
     }
 
     public Personagem selecionarPersonagem(TipoPersonagem tipoPersonagem, int side) {

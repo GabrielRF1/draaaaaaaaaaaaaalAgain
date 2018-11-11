@@ -1,5 +1,7 @@
 package controle;
 
+import com.jettasoft.jettacargo.log.BasicLogger;
+
 import constante.Constantes;
 import modelo.jogador.Jogador;
 import modelo.jogo.Jogo;
@@ -15,8 +17,7 @@ public class Controle {
     private static Controle control;
 
     private Controle() {
-        iniciarJogo();
-        //new Teste(this);
+
         new TelaInicial().setVisible(true);
     }
 
@@ -31,7 +32,7 @@ public class Controle {
         this.jogo = new Jogo();
         this.jogo.adicionarAreaDeCriacaoDosJogadores();
         this.jogadorDaVez = this.jogo.getJogadorUm();
-
+        BasicLogger.logInfo("Jogo iniciado.");
     }
 
     public void selecionarPersonagem(int x, int y, TipoPersonagem tipoPersonagem, int side) {
@@ -39,11 +40,21 @@ public class Controle {
         Personagem personagem = this.jogo.selecionarPersonagem(tipoPersonagem, side);
         Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
         System.out.println(this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition));
+        System.out.println(this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition));
+        BasicLogger.logInfo(this.jogadorDaVez.getNome() + " : " + personagem.getTipoPersonagem()
+                + " foi selecionado para criação.");
 
-        if (clickedPosition.getPersonagem() == null
-                && this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition)) {
-            clickedPosition.setPersonagem(personagem);
-            this.jogadorDaVez.adicionarPersonagem(personagem);
+        if (clickedPosition.getPersonagem() == null) {
+
+            if (this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition)) {
+                clickedPosition.setPersonagem(personagem);
+                this.jogadorDaVez.adicionarPersonagem(personagem);
+                BasicLogger.logInfo(this.jogadorDaVez.getNome() + " : " + personagem.getTipoPersonagem() + " foi adicionado ao tabuleiro.");
+                BasicLogger.logInfo("Posição: " + clickedPosition.getX() + ", " + clickedPosition.getY());
+            }
+
+            BasicLogger.logDebug(clickedPosition.toString() + " está fora da área de criação.");
+            BasicLogger.logDebug(this.jogadorDaVez.getNome() + ": " + this.jogadorDaVez.getAreaDeCriacao().toString());
         }
 
         if (this.atingiuLimiteDePersonagens()) {
@@ -115,13 +126,18 @@ public class Controle {
 
         if (jogo != null) {
             this.jogadorDaVez.atualizarStatusDosPersonagens();
+            BasicLogger.logInfo("Passar turno");
+            BasicLogger.logInfo(this.jogadorDaVez.getNome() + ": personagens atualizados.");
 
             if (this.jogadorDaVez == this.jogo.getJogadorUm()) {
                 this.jogadorDaVez = this.jogo.getJogadorDois();
             } else {
                 this.jogadorDaVez = this.jogo.getJogadorUm();
             }
+
+            BasicLogger.logInfo("Jogador da vez: " + this.jogadorDaVez.getNome());
             this.jogo.passarTurnoAtual();
+            BasicLogger.logInfo(this.jogadorDaVez.getNome() + " : turno atual : " + this.jogo.getTurnoAtual());
         }
 
     }
