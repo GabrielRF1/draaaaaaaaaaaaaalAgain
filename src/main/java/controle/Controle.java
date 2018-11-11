@@ -92,6 +92,7 @@ public class Controle {
                         && (celulaSelecionada.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)
                         || celulaSelecionada.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.CLERIGO))) {
                     this.jogo.suporte(celulaSelecionada, clickedPosition);
+                    this.jogadorDaVez.setCelulaSelecionada(null);
                     System.out.println("Suporte");
                 } else {
                     System.out.println("selecionar");
