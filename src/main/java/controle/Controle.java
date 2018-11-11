@@ -89,12 +89,14 @@ public class Controle {
             if (this.jogadorDaVez.personagemPertenceAoJogador(personagem)) {
                 // SELECIONAR
                 if (celulaSelecionada != null
-                        && (celulaSelecionada.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO) 
+                        && (celulaSelecionada.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)
                         || celulaSelecionada.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.CLERIGO))) {
                     this.jogo.suporte(celulaSelecionada, clickedPosition);
+                    System.out.println("Suporte");
+                } else {
+                    System.out.println("selecionar");
+                    this.jogadorDaVez.setCelulaSelecionada(clickedPosition);
                 }
-                System.out.println("selecionar");
-                this.jogadorDaVez.setCelulaSelecionada(clickedPosition);
             } else {
                 // ATACAR
                 System.out.println("atacar");
