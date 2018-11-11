@@ -16,10 +16,15 @@ public class Jogo {
 
     public void suporte(Celula origem, Celula alvo) {
         Personagem buffedTarget = alvo.getPersonagem();
-        if (origem.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)) {
-            buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+        TipoPersonagem tipo = origem.getPersonagem().getTipoPersonagem();
+        if (tipo.equals(TipoPersonagem.BARDO)) {
+            if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
+                buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+            }
         } else {
-            buffedTarget.setDanoInfligido(-2);
+            if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
+                buffedTarget.setDanoInfligido(-2);
+            }
         }
     }
 
