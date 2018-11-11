@@ -14,6 +14,15 @@ public class Jogo {
     private Jogador jogadorUm;
     private Jogador jogadorDois;
 
+    public void suporte(Celula origem, Celula alvo) {
+        Personagem buffedTarget = alvo.getPersonagem();
+        if(origem.getPersonagem().getTipoPersonagem().equals(TipoPersonagem.BARDO)){
+            buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+        }else{
+            buffedTarget.setDanoInfligido(-2);
+        }
+    }
+
     private enum estadoGame {
         EstadoDeCriacao, EstadoDeJogo
     };
