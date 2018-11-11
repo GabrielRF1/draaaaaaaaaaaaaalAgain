@@ -154,7 +154,7 @@ public class TabuleiroView extends javax.swing.JFrame {
                         campoGrafico[i][j].setBackground(Color.GRAY);
                     }
                 }
-                campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
+                //campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
                 campoGrafico[i][j].addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         clique(evt);
@@ -180,7 +180,6 @@ public class TabuleiroView extends javax.swing.JFrame {
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
                 if (Controle.getObject().ehFimTurno()) {
                     Controle.getObject().passarTurno();
-                    System.out.println("Passa Turno");
                 }
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -261,7 +260,7 @@ public class TabuleiroView extends javax.swing.JFrame {
                 if (null != Tabuleiro.getObject().getTabuleiro()[i][j].getPersonagem()) {
                     atualizarPecas(new Point(i, j));
                 } else {
-                    campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
+                  //  campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
                 }
                 campoGrafico[i][j].setSelected(false);
 

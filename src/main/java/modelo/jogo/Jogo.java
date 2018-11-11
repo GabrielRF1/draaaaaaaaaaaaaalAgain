@@ -50,6 +50,10 @@ public class Jogo {
             }
         }
     }
+    
+    public int getTurnoAtual() {
+    	return this.turnoAtual;
+    }
 
     public Personagem selecionarPersonagem(TipoPersonagem tipoPersonagem) {
         if (this.estadoAtual == estadoGame.EstadoDeCriacao) {

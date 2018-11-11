@@ -16,6 +16,12 @@ public class AreaDeCriacao {
 		this.supDireita = supDireita;
 	}
 
+	@Override
+	public String toString() {
+		return "AreaDeCriacao [infEsquerda=" + infEsquerda.toStringError() + ", supEsquerda=" + supEsquerda.toStringError() + ", infDireita="
+				+ infDireita.toStringError() + ", supDireita=" + supDireita.toStringError() + "]";
+	}
+
 	public boolean estaDentroDaArea(Celula clickedPosition) {
 
 		// inferior esquerda

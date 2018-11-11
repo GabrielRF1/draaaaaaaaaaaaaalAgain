@@ -127,6 +127,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TabuleiroView a = new TabuleiroView();
+        Controle.getObject().iniciarJogo();
         a.setLocationRelativeTo(this);
         this.dispose();
         a.setVisible(true);
