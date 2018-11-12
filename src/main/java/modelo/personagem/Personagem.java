@@ -6,6 +6,7 @@ public class Personagem {
     private int energia;
     private TipoPersonagem tipoPersonagem;
     private boolean moveu;
+    private boolean powerHit;
     private boolean atacou;
     private final int side;
 
@@ -15,18 +16,29 @@ public class Personagem {
         this.tipoPersonagem = tipoPersonagem;
         this.moveu = false;
         this.atacou = false;
+        this.powerHit = false;
         this.side = side;
     }
-    
-    @Override
-	public String toString() {
-		return "Personagem [hp=" + hp + ", energia=" + energia + ", tipoPersonagem=" + tipoPersonagem + ", moveu="
-				+ moveu + ", atacou=" + atacou + "]";
-	}
 
-	public int getHP() {
+    @Override
+    public String toString() {
+        return "Personagem [hp=" + hp + ", energia=" + energia + ", tipoPersonagem=" + tipoPersonagem + ", moveu="
+                + moveu + ", atacou=" + atacou + "]";
+    }
+
+    public int getHP() {
         return this.hp;
     }
+
+    public boolean getPowerHit() {
+        return powerHit;
+    }
+
+    public void setPowerHit(boolean assassinsTouch) {
+        this.powerHit = assassinsTouch;
+    }
+
+    
 
     public int getSide() {
         return side;
@@ -51,17 +63,17 @@ public class Personagem {
     public void setAtacou(boolean atacou) {
         this.atacou = atacou;
     }
-    
+
     public TipoPersonagem getTipoPersonagem() {
         return this.tipoPersonagem;
     }
 
-	public int getEnergia() {
-		return energia;
-	}
+    public int getEnergia() {
+        return energia;
+    }
 
-	public void setDanoInfligido(int danoAInfligir) {
-		this.hp = this.hp - danoAInfligir;
-		
-	}
+    public void setDanoInfligido(int danoAInfligir) {
+        this.hp = this.hp - danoAInfligir;
+
+    }
 }

@@ -24,6 +24,7 @@ import modelo.tabuleiro.TipoSolo;
 public class TabuleiroView extends javax.swing.JFrame {
 
     protected static JToggleButton campoGrafico[][];
+    CardPersonagem opened;
     private boolean charsCreated;
     private int numCreated;
 
@@ -60,8 +61,11 @@ public class TabuleiroView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -75,9 +79,9 @@ public class TabuleiroView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setText("Dral");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(41, 194, 0, 0);
         jPanel3.add(jLabel1, gridBagConstraints);
@@ -90,10 +94,10 @@ public class TabuleiroView extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(57, 234, 0, 59);
+        gridBagConstraints.insets = new java.awt.Insets(20, 246, 0, 49);
         jPanel3.add(jButton1, gridBagConstraints);
 
         jLabel2.setBackground(new java.awt.Color(153, 255, 51));
@@ -101,21 +105,54 @@ public class TabuleiroView extends javax.swing.JFrame {
         jLabel2.setText("Jogador Atual: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(80, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
         jPanel3.add(jLabel2, gridBagConstraints);
 
         jLabel3.setForeground(new java.awt.Color(153, 255, 102));
-        jLabel3.setText("Jogador 1");
+        jLabel3.setText("                  ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        jPanel3.add(jLabel3, gridBagConstraints);
+
+        jButton2.setForeground(new java.awt.Color(204, 0, 0));
+        jButton2.setText("Fechar Jogo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 244, 0, 49);
+        jPanel3.add(jButton2, gridBagConstraints);
+
+        jLabel4.setBackground(new java.awt.Color(153, 255, 51));
+        jLabel4.setForeground(new java.awt.Color(153, 255, 51));
+        jLabel4.setText("Turno:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(80, 6, 0, 0);
-        jPanel3.add(jLabel3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
+        jPanel3.add(jLabel4, gridBagConstraints);
+
+        jLabel5.setBackground(new java.awt.Color(153, 255, 51));
+        jLabel5.setForeground(new java.awt.Color(153, 255, 51));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel3.add(jLabel5, gridBagConstraints);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
@@ -141,6 +178,10 @@ public class TabuleiroView extends javax.swing.JFrame {
         }
     }
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
+    }
+
     private void initCampo() {
         for (int i = 0; i < campoGrafico.length; i++) {
             for (int j = 0; j < campoGrafico[0].length; j++) {
@@ -152,8 +193,11 @@ public class TabuleiroView extends javax.swing.JFrame {
                 } else if (j <= 17 && j >= 12) {
                     campoGrafico[i][j].setBackground(Color.BLUE);
                     if ((i >= 14 && i <= 18) || i == 3 || i == 24 || i == 10) {
-                        campoGrafico[i][j].setBackground(Color.GRAY);
+                        campoGrafico[i][j].setBackground(Color.DARK_GRAY);
                     }
+                }
+                if ((j == 18 && i == 12) || (j == 11 && i == 20)) {
+                    campoGrafico[i][j].setBackground(Color.BLACK);
                 }
                 campoGrafico[i][j].setIcon(new ImageIcon(getClass().getResource(Tabuleiro.getObject().getCelula(i, j).getTipoSolo().getImagePath())));
                 campoGrafico[i][j].addActionListener(new java.awt.event.ActionListener() {
@@ -178,10 +222,8 @@ public class TabuleiroView extends javax.swing.JFrame {
         if (charsCreated) {
             try {
                 Point ponto = getSelectedPoint(campoGrafico);
+                createCard(Tabuleiro.getObject().getCelula(ponto.x, ponto.y).getPersonagem());
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
-                if (Controle.getObject().ehFimTurno()) {
-                    Controle.getObject().passarTurno();
-                }
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -199,8 +241,21 @@ public class TabuleiroView extends javax.swing.JFrame {
 
     }
 
+    private void createCard(Personagem p) {
+        if (opened != null) {
+            opened.dispose();
+            opened = null;
+        }
+        if (p != null && Controle.getObject().getJogadorDaVez().personagemPertenceAoJogador(p)) {
+            CardPersonagem card = new CardPersonagem(p);
+            card.setLocation(0, this.HEIGHT);
+            opened = card;
+            card.setVisible(true);
+        }
+    }
+
     private void createCharView(int chara) {
-        TipoPersonagem tipo;
+        TipoPersonagem tipo = TipoPersonagem.ARQUEIRO;
         boolean canCreate = true;
         switch (chara) {
             case 1:
@@ -220,9 +275,10 @@ public class TabuleiroView extends javax.swing.JFrame {
                 break;
             default:
                 canCreate = false;
-                numCreated = 14;
-                Controle.getObject().passarTurno();
-                tipo = TipoPersonagem.ARQUEIRO;
+                if (Controle.getObject().getJogadorDaVez().getPersonagens().size() > 0) {
+                    numCreated = 14;
+                    Controle.getObject().passarTurno();
+                }
         }
         if (canCreate) {
             for (int i = 0; i < campoGrafico.length; i++) {
@@ -268,6 +324,7 @@ public class TabuleiroView extends javax.swing.JFrame {
             }
         }
         jLabel3.setText(Controle.getObject().getJogadorDaVez().getNome());
+        jLabel5.setText("" + Controle.getObject().getJogo().getTurnoAtual());
         return campoGrafico;
     }
 
@@ -351,9 +408,12 @@ public class TabuleiroView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify      
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

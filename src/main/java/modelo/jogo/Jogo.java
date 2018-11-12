@@ -1,5 +1,6 @@
 package modelo.jogo;
 
+import controle.Controle;
 import modelo.jogador.AreaDeCriacao;
 import modelo.jogador.Jogador;
 import modelo.personagem.Personagem;
@@ -16,15 +17,20 @@ public class Jogo {
 
     public void suporte(Celula origem, Celula alvo) {
         Personagem buffedTarget = alvo.getPersonagem();
+        Personagem buffer = origem.getPersonagem();
         TipoPersonagem tipo = origem.getPersonagem().getTipoPersonagem();
-        if (tipo.equals(TipoPersonagem.BARDO)) {
-            if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
-                buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+        if (!buffer.getAtacou()) {
+            if (tipo.equals(TipoPersonagem.BARDO)) {
+                if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
+                    buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+                }
+            } else {
+                if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
+                    buffedTarget.setDanoInfligido(-2);
+                }
             }
-        } else {
-            if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
-                buffedTarget.setDanoInfligido(-2);
-            }
+            buffer.setEnergia(buffer.getEnergia() + 1);
+            buffer.setAtacou(true);
         }
     }
 
@@ -129,17 +135,75 @@ public class Jogo {
             }
             //atributos de dano do personagem atacante
             int danoDoPersonagem = personagemAtck.getTipoPersonagem().getDano();
+            if (personagemAtck.getTipoPersonagem() == TipoPersonagem.GUERREIRO && personagemAtck.getPowerHit()) {
+                danoDoPersonagem = 4;
+            }
+
             int energia = personagemAtck.getEnergia();
 
             boolean isInRange = Tabuleiro.getObject().isInRange(rangePersonagem, origem, alvo);
             boolean atacou = personagemAtck.getAtacou();
 
             if (!atacou && isInRange) {
-
-                personagemDfns.setDanoInfligido(danoDoPersonagem);
+                if (personagemAtck.getTipoPersonagem() == TipoPersonagem.ASSASSINO && personagemAtck.getPowerHit()) {
+                    personagemDfns.setDanoInfligido(personagemDfns.getHP());
+                    personagemAtck.setPowerHit(false);
+                } else {
+                    personagemDfns.setDanoInfligido(danoDoPersonagem);
+                }
                 personagemAtck.setAtacou(true);
                 personagemAtck.setEnergia(energia + 1);
             }
+        }
+    }
+
+    public void usarEspecial(Personagem p) {
+        Jogador oponente = null;
+        if (Controle.getObject().getJogadorDaVez().equals(jogadorUm)) {
+            oponente = jogadorDois;
+        } else {
+            oponente = jogadorUm;
+        }
+        switch (p.getTipoPersonagem()) {
+            case ARQUEIRO:
+                for (Personagem pe : oponente.getPersonagens()) {
+                    pe.setDanoInfligido(5);
+                }
+                break;
+            case GUERREIRO:
+                Celula origem = Controle.getObject().getJogadorDaVez().getCelulaSelecionada();
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX(), origem.getY() + 1));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX(), origem.getY() - 1));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() + 1, origem.getY()));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() - 1, origem.getY()));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() + 1, origem.getY() + 1));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() - 1, origem.getY() - 1));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() - 1, origem.getY() + 1));
+                p.setPowerHit(true);
+                atacar(origem, Tabuleiro.getObject().getCelula(origem.getX() + 1, origem.getY() - 1));
+                p.setPowerHit(false);
+                break;
+            case ASSASSINO:
+                p.setPowerHit(true);
+                break;
+            case BARDO:
+                for (Personagem pe : oponente.getPersonagens()) {
+                    pe.setEnergia(pe.getEnergia() - 5);
+                }
+                break;
+            default:
+                for (Personagem pe : Controle.getObject().getJogadorDaVez().getPersonagens()) {
+                    if (pe != p) {
+                        pe.setDanoInfligido(-(pe.getHP() + (int) 0.05 * pe.getHP()));
+                    }
+                }
         }
     }
 
