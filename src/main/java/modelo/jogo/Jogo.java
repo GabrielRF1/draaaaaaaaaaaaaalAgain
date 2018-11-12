@@ -22,7 +22,7 @@ public class Jogo {
         if (!buffer.getAtacou()) {
             if (tipo.equals(TipoPersonagem.BARDO)) {
                 if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
-                    buffedTarget.setEnergia(buffedTarget.getEnergia() + 70);
+                    buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
                     buffer.setAtacou(true);
                 }
             } else {
