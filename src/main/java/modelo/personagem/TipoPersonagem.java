@@ -6,7 +6,7 @@ public enum TipoPersonagem {
     /*para lembrar
         esps -> arc,  5 dano em todos inimigos
              -> gue,  ataca todas as regi'oes dentro de seu range, mesmo q sem alvos, dando 4 de dano
-             -> cler,  heal 5% da vida total de todos os aliados
+             -> cler,  heal 5 da vida total de todos os aliados
              -> bardo, reduz a energia de todos inimigos em 5
              -> assa,  instant kill em seu pro`ximo atk
      */

@@ -22,7 +22,7 @@ public class Jogo {
         if (!buffer.getAtacou()) {
             if (tipo.equals(TipoPersonagem.BARDO)) {
                 if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
-                    buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+                    buffedTarget.setEnergia(buffedTarget.getEnergia() + 70);
                     buffer.setAtacou(true);
                 }
             } else {
@@ -203,7 +203,7 @@ public class Jogo {
             default:
                 for (Personagem pe : Controle.getObject().getJogadorDaVez().getPersonagens()) {
                     if (pe != p) {
-                        pe.setDanoInfligido(-(pe.getHP() + (int) 0.05 * pe.getHP()));
+                        pe.setDanoInfligido(-(pe.getHP() + 5));
                     }
                 }
         }

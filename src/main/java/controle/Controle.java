@@ -154,7 +154,8 @@ public class Controle {
             this.jogadorDaVez.atualizarStatusDosPersonagens();
             BasicLogger.logInfo("Passar turno");
             BasicLogger.logInfo(this.jogadorDaVez.getNome() + ": personagens atualizados.");
-
+            
+            this.jogadorDaVez.setCelulaSelecionada(null);
             if (this.jogadorDaVez == this.jogo.getJogadorUm()) {
                 this.jogadorDaVez = this.jogo.getJogadorDois();
             } else {
@@ -182,4 +183,5 @@ public class Controle {
             clicked.setPersonagem(null);
         }
     }
+
 }
