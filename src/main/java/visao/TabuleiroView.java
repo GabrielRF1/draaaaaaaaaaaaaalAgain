@@ -222,8 +222,8 @@ public class TabuleiroView extends javax.swing.JFrame {
         if (charsCreated) {
             try {
                 Point ponto = getSelectedPoint(campoGrafico);
-                createCard(Tabuleiro.getObject().getCelula(ponto.x, ponto.y).getPersonagem());
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
+                createCard(Tabuleiro.getObject().getCelula(ponto.x, ponto.y).getPersonagem());
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
             }

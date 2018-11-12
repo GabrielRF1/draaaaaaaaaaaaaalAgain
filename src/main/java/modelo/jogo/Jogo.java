@@ -23,14 +23,16 @@ public class Jogo {
             if (tipo.equals(TipoPersonagem.BARDO)) {
                 if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
                     buffedTarget.setEnergia(buffedTarget.getEnergia() + 1);
+                    buffer.setAtacou(true);
                 }
             } else {
                 if (Tabuleiro.getObject().isInRange(tipo.getRangeAtacar(), origem, alvo)) {
                     buffedTarget.setDanoInfligido(-2);
+                    buffer.setAtacou(true);
                 }
             }
             buffer.setEnergia(buffer.getEnergia() + 1);
-            buffer.setAtacou(true);
+
         }
     }
 
