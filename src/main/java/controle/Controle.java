@@ -184,4 +184,8 @@ public class Controle {
         }
     }
 
+    public void save() {
+    
+    }
+
 }

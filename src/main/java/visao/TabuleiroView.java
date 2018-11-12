@@ -179,7 +179,14 @@ public class TabuleiroView extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
+        int k = JOptionPane.showConfirmDialog(this, "Voce realmente deseja sair do jogo?");
+        if (k == JOptionPane.YES_OPTION) {
+            int m = JOptionPane.showConfirmDialog(this, "deseja salvar o jogo?");
+            if (m == JOptionPane.YES_OPTION) {
+                Controle.getObject().save();
+            }
+            System.exit(0);
+        }
     }
 
     private void initCampo() {
