@@ -225,7 +225,7 @@ public class TabuleiroView extends javax.swing.JFrame {
                 Controle.getObject().selecionarAcao(ponto.x, ponto.y);
                 createCard(Tabuleiro.getObject().getCelula(ponto.x, ponto.y).getPersonagem());
             } catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Ação inválida", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             try {
@@ -246,7 +246,7 @@ public class TabuleiroView extends javax.swing.JFrame {
             opened.dispose();
             opened = null;
         }
-        if (p != null && Controle.getObject().getJogadorDaVez().personagemPertenceAoJogador(p)) {
+        if (p != null && Controle.getObject().getJogadorDaVez().personagemPertenceAoJogador(p) && Controle.getObject().getJogadorDaVez().getCelulaSelecionada().getPersonagem().equals(p)) {
             CardPersonagem card = new CardPersonagem(p);
             card.setLocation(0, this.HEIGHT);
             opened = card;

@@ -231,14 +231,19 @@ public class CardPersonagem extends JFrame {
 
     private void especActivateActionPerformed(java.awt.event.ActionEvent evt) {
         Controle.getObject().doSpecialMove();
-        Personagem perso = Controle.getObject().getJogadorDaVez().getCelulaSelecionada().getPersonagem();
-        if (perso.getEnergia() < perso.getTipoPersonagem().getMinimoEspecial()) {
-            JOptionPane.showMessageDialog(null, "Energia insuficiente", "oops", JOptionPane.PLAIN_MESSAGE);
-        }
-        if (perso.getAtacou()) {
-            JOptionPane.showMessageDialog(null, "Personagem já atacou neste turno", "oops", JOptionPane.PLAIN_MESSAGE);
-        } if(perso.getEnergia() >= perso.getTipoPersonagem().getMinimoEspecial() && !perso.getAtacou()){
-            dispose();
+        if (Controle.getObject().getJogadorDaVez().getCelulaSelecionada() == null) {
+            JOptionPane.showMessageDialog(null, "Impossível realizar especial", "oops", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            Personagem perso = Controle.getObject().getJogadorDaVez().getCelulaSelecionada().getPersonagem();
+            if (perso.getEnergia() < perso.getTipoPersonagem().getMinimoEspecial()) {
+                JOptionPane.showMessageDialog(null, "Energia insuficiente", "oops", JOptionPane.PLAIN_MESSAGE);
+            }
+            if (perso.getAtacou()) {
+                JOptionPane.showMessageDialog(null, "Personagem já atacou neste turno", "oops", JOptionPane.PLAIN_MESSAGE);
+            }
+            if (perso.getEnergia() >= perso.getTipoPersonagem().getMinimoEspecial() && !perso.getAtacou()) {
+                dispose();
+            }
         }
         // TODO add your handling code here:
     }

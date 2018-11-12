@@ -119,15 +119,17 @@ public class Controle {
     }
 
     public void doSpecialMove() {
-        Personagem p = jogadorDaVez.getCelulaSelecionada().getPersonagem();
-        if (p.getEnergia() >= p.getTipoPersonagem().getMinimoEspecial() && !p.getAtacou()) {
-            this.jogo.usarEspecial(p);
-            p.setAtacou(true);
-            p.setEnergia(p.getEnergia() - p.getTipoPersonagem().getMinimoEspecial());
-            this.jogadorDaVez.setCelulaSelecionada(null);
-        }
-        if (ehFimTurno()) {
-            passarTurno();
+        if (this.jogadorDaVez.getCelulaSelecionada() != null) {
+            Personagem p = jogadorDaVez.getCelulaSelecionada().getPersonagem();
+            if (p.getEnergia() >= p.getTipoPersonagem().getMinimoEspecial() && !p.getAtacou()) {
+                this.jogo.usarEspecial(p);
+                p.setAtacou(true);
+                p.setEnergia(p.getEnergia() - p.getTipoPersonagem().getMinimoEspecial());
+                this.jogadorDaVez.setCelulaSelecionada(null);
+            }
+            if (ehFimTurno()) {
+                passarTurno();
+            }
         }
     }
 
