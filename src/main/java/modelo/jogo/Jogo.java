@@ -37,7 +37,7 @@ public class Jogo {
     }
 
     private enum estadoGame {
-        EstadoDeCriacao, EstadoDeJogo
+        EstadoDeCriacao, EstadoDeJogo, GameOver
     };
     private estadoGame estadoAtual;
     private int turnoAtual;
@@ -48,6 +48,17 @@ public class Jogo {
         this.jogadorDois = new Jogador("Jogador 2");
         this.estadoAtual = estadoGame.EstadoDeCriacao;
         this.turnoAtual = 0;
+    }
+
+    public int getEstadoAtual() {
+        switch (estadoAtual) {
+            case EstadoDeCriacao:
+                return 0;
+            case EstadoDeJogo:
+                return 1;
+            default:
+                return 2;
+        }
     }
 
     public void changeState() {
@@ -67,8 +78,14 @@ public class Jogo {
         if (estadoAtual.equals(estadoGame.EstadoDeJogo)) {
             if (jogadorUm.getPersonagens().contains(p)) {
                 jogadorUm.removerPersonagem(p);
+                if (jogadorUm.getPersonagens().size() == 0) {
+                    estadoAtual = estadoGame.GameOver;
+                }
             } else {
                 jogadorDois.removerPersonagem(p);
+                if (jogadorDois.getPersonagens().size() == 0) {
+                    estadoAtual = estadoGame.GameOver;
+                }
             }
         }
     }

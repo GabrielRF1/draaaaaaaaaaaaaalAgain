@@ -245,7 +245,10 @@ public class TabuleiroView extends javax.swing.JFrame {
             }
         }
         campoGrafico = atualizarCampo();
-
+        if (Controle.getObject().getJogo().getEstadoAtual() == 2) {
+            JOptionPane.showMessageDialog(this, "Fim de jogo", "fim!", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }
 
     private void createCard(Personagem p) {
