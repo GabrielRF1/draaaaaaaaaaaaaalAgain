@@ -6,6 +6,7 @@
 package visao;
 
 import controle.Controle;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,6 +136,12 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(this, "1)jogadores escolhem no máximo 15 dentre 5 tipos de personagens\n"
+                + "2)Um mesmo boneco não pode movimentar e atacar mais de uma vez por turno\n"
+                + "3) sempre que um herói realizar uma ação básica ele aumenta sua energia em 1\n"
+                + "4) pode-se gastar energia em ataques especiais\n"
+                + "5) Um turno acaba quando jogador pedir ou quando já tiver efetuado todas as ações possíveis de todos os bonecos.\n"
+                + "6) o jogo acaba quando todos personagens de um jogador morrer", "Regras", JOptionPane.PLAIN_MESSAGE);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
