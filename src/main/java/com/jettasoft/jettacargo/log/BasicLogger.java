@@ -1,4 +1,4 @@
-package com.jettasoft.jettacargo.log;
+
 
 import java.sql.Timestamp;
 
